@@ -17,12 +17,15 @@ class SearchSection extends Component {
 	onInputChange(event) {
 
 		this.setState({term: event.target.value});
+		if(event.target.value.length > 3) {
+			this.props.fetchFirstMovie(this.state.term);
+		}
 	}
 
 	onFormSubmit(event) {
 		event.preventDefault();
 
-		this.props.fetchFirstMovie(this.state.term);
+		//this.props.fetchFirstMovie(this.state.term);
 
 	}
 
@@ -46,15 +49,10 @@ class SearchSection extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return{
-		movies: state.movies
-	}
-}
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({fetchFirstMovie: fetchFirstMovie}, dispatch);
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchSection);
+export default connect(null, mapDispatchToProps)(SearchSection);

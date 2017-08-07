@@ -7,10 +7,11 @@ const API_KEY = '6f1f9a1abf347d1f0a727e5e486bba47';
 
 export function fetchFirstMovie(movie) {
 	console.log("movie: ", movie);
+	const url = `${ROOT_URL}/search/movie?api_key=${API_KEY}&query=${movie}`;
 
-	const request = axios.get(`${ROOT_URL}/search/movie?api_key=${API_KEY}&query=${movie}`);
+	const request = axios.get(url);
 
-	console.log(request);
+	console.log("Request: ", request);
 
 	return {
 		type: FETCH_FIRST_MOVIE,
