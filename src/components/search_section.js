@@ -7,7 +7,6 @@ class SearchSection extends Component {
 
 	constructor(props) {
 		super(props);
-
 		this.state = {term: ''};
 
 		this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -15,7 +14,6 @@ class SearchSection extends Component {
 	}
 
 	onInputChange(event) {
-
 		this.setState({term: event.target.value});
 		if(event.target.value.length > 3) {
 			this.props.fetchFirstMovie(this.state.term);
@@ -24,9 +22,18 @@ class SearchSection extends Component {
 
 	onFormSubmit(event) {
 		event.preventDefault();
-
 		//this.props.fetchFirstMovie(this.state.term);
+	}
 
+	renderLiveSearch() {
+		console.log("props movie: ", this.props.movies);
+		return this.props.movies.map((movie) => {
+			return(
+				<li key={movie.id} className="list-group-item">
+					<button onClick={selectMove()}>{movie.title}</button>
+				</li>
+			)
+		});
 	}
 
 	render() {
@@ -39,13 +46,22 @@ class SearchSection extends Component {
 			    		type="text" 
 			    		className="form-control" 
 			    		id="movie1" 
-			    		value={this.state.term}
 			    		placeholder="Movie 1"
+			    		value={this.state.term}
 			    		onChange={this.onInputChange} />
+			    		<ul>
+			    			{this.renderLiveSearch()}
+		    			</ul>
 		 	 	</div>
 		 	 	<button type="submit" className="btn btn-default">Search</button>
 			</form>
 		);
+	}
+}
+
+function mapStateToProps(state) {
+	return {
+		movies: state.movies
 	}
 }
 
@@ -55,4 +71,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(null, mapDispatchToProps)(SearchSection);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchSection);

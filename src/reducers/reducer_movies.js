@@ -5,7 +5,8 @@ export default function(state=[], action){
 
 	switch(action.type) {
 		case FETCH_FIRST_MOVIE:
-			return [ action.payload.data, ...state ];
+			// Only return 5 at a time
+			return action.payload.data.results.splice(0, 5);
 	}
 
 	return state;
