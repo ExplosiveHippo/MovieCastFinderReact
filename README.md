@@ -1,25 +1,7 @@
-# ReduxSimpleStarter
+# Movie Cast Finder
 
-Interested in learning [Redux](https://www.udemy.com/react-redux/)?
+Many times you're watching a movie and you see an actor (often a lower-billed actor) that you just can't a name to the face. However, often this is followed by "Ohh, they were in that one movie I think". Well this is what movie cast finder accomplishes.
 
-### Getting Started
+A little app that takes in 2 movies and returns a list of any actors/actresses that are cast members of both films.
 
-There are two methods for getting started with this repo.
-
-#### Familiar with Git?
-Checkout this repo, install dependencies, then start the gulp process with the following:
-
-```
-> git clone https://github.com/StephenGrider/ReduxSimpleStarter.git
-> cd ReduxSimpleStarter
-> npm install
-> npm start
-```
-
-#### Not Familiar with Git?
-Click [here](https://github.com/StephenGrider/ReactStarter/releases) then download the .zip file.  Extract the contents of the zip file, then open your terminal, change to the project directory, and:
-
-```
-> npm install
-> npm start
-```
+This project already existed, but I'm porting it over to React.
