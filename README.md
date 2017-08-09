@@ -4,4 +4,4 @@ Many times you're watching a movie and you see an actor (often a lower-billed ac
 
 A little app that takes in 2 movies and returns a list of any actors/actresses that are cast members of both films.
 
-This project already existed, but I'm porting it over to React.
+I've built this project already, but I'm porting it over to React.
