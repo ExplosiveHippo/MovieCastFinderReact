@@ -8,7 +8,6 @@ export default class SearchSection extends Component {
 		return (
 			<div>
 				<SearchInput />
-				<SearchInput />
 				<button type="submit" className="btn btn-default">Search</button>
 			</div>
 		);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchFirstMovie } from '../actions/index';
+import { selectFirstMovie } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
 class SearchInput extends Component {
@@ -20,13 +21,15 @@ class SearchInput extends Component {
 		}
 	}
 
-	onFormSubmit(event) {
+	onFormSubmit(movie) {
 		event.preventDefault();
+		
 		//this.props.fetchFirstMovie(this.state.term);
 	}
 
-	selectMovie() {
-
+	selectMovie(movie) {
+		this.props.selectFirstMovie(movie.id);
+		this.setState({'term': movie.title});
 	}
 
 	renderLiveSearch() {
@@ -34,7 +37,7 @@ class SearchInput extends Component {
 		return this.props.movies.map((movie) => {
 			return(
 				<li key={movie.id} className="list-group-item">
-					<button onClick={this.selectMovie()}>{movie.title}</button>
+					<button type="button" onClick={() => this.selectMovie(movie)}>{movie.title}</button>
 				</li>
 			)
 		});
@@ -64,13 +67,14 @@ class SearchInput extends Component {
 
 function mapStateToProps(state) {
 	return {
-		movies: state.movies
+		movies: state.movies,
+		firstMovie: state.firstMovie
 	}
 }
 
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({fetchFirstMovie: fetchFirstMovie}, dispatch);
+	return bindActionCreators({fetchFirstMovie: fetchFirstMovie, selectFirstMovie: selectFirstMovie}, dispatch);
 }
 
 
