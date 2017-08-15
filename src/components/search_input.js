@@ -10,7 +10,7 @@ class SearchInput extends Component {
 		super(props);
 		this.state = {
 			term: '',
-			movie: {},
+			movieId: '',
 			showLiveSearch: 'true'
 		};
 
@@ -27,13 +27,13 @@ class SearchInput extends Component {
 
 	onFormSubmit(event) {
 		event.preventDefault();
-		if(this.state.movie.id){
-			this.props.selectFirstMovie(this.state.movie.id);
+		if(this.state.movieId){
+			this.props.selectFirstMovie(this.state.movieId);
 		}
 	}
 
 	selectMovie(movie) {
-		this.setState({'term': movie.title, 'movie': movie, 'showLiveSearch': false});
+		this.setState({'term': movie.title, 'movieId': movie.id, 'showLiveSearch': false});
 	}
 
 	renderLiveSearch() {
