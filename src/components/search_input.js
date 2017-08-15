@@ -23,12 +23,10 @@ class SearchInput extends Component {
 
 	onFormSubmit(movie) {
 		event.preventDefault();
-		
-		//this.props.fetchFirstMovie(this.state.term);
+		this.props.selectFirstMovie(movie.id);
 	}
 
 	selectMovie(movie) {
-		this.props.selectFirstMovie(movie.id);
 		this.setState({'term': movie.title, 'showLiveSearch': false});
 	}
 
