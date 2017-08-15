@@ -8,10 +8,14 @@ class SearchInput extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {term: '', showLiveSearch: 'true'};
+		this.state = {
+			term: '',
+			movie: {},
+			showLiveSearch: 'true'
+		};
 
-		this.onFormSubmit = this.onFormSubmit.bind(this);
 		this.onInputChange = this.onInputChange.bind(this);
+		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
 	onInputChange(event) {
@@ -21,17 +25,18 @@ class SearchInput extends Component {
 		}
 	}
 
-	onFormSubmit(movie) {
+	onFormSubmit(event) {
 		event.preventDefault();
-		this.props.selectFirstMovie(movie.id);
+		if(this.state.movie.id){
+			this.props.selectFirstMovie(this.state.movie.id);
+		}
 	}
 
 	selectMovie(movie) {
-		this.setState({'term': movie.title, 'showLiveSearch': false});
+		this.setState({'term': movie.title, 'movie': movie, 'showLiveSearch': false});
 	}
 
 	renderLiveSearch() {
-		console.log("props movie: ", this.props.movies);
 		if(this.state.showLiveSearch){
 			return this.props.movies.map((movie) => {
 				return(
@@ -44,22 +49,23 @@ class SearchInput extends Component {
 	}
 
 	render() {
-		//console.log(this.state.movies);
+		console.log(this.props);
 		return (
 			<form onSubmit={this.onFormSubmit} className="input-group">
 				<div className="form-group">
-		    			<label htmlFor="movie2">Movie</label>
-				    	<input 
-				    		type="text" 
-				    		className="form-control" 
-				    		id="movie2" 
-				    		placeholder="Movie"
-				    		value={this.state.term}
-				    		onChange={this.onInputChange} />
-				    		<ul>
-				    			{this.renderLiveSearch()}
-			    			</ul>
-			 	 	</div>
+	    			<label htmlFor="movie2">Movie</label>
+			    	<input 
+			    		type="text" 
+			    		className="form-control" 
+			    		id="movie2" 
+			    		placeholder="Movie"
+			    		value={this.state.term}
+			    		onChange={this.onInputChange} />
+			    		<ul>
+			    			{this.renderLiveSearch()}
+		    			</ul>
+		 	 	</div>
+		 	 	<button type="submit" onClick={() => this.onFormSubmit(event)} className="btn btn-default">Search</button>
 			</form>
 		);
 	}
