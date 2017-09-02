@@ -21,7 +21,7 @@ class SearchInput extends Component {
 	onInputChange(event) {
 		this.setState({'term': event.target.value, 'showLiveSearch': true });
 		if(event.target.value.length > 3) {
-			this.props.fetchFirstMovie(this.state.term);
+			this.props.fetchFirstMovie(this.state.term, event.target.id);
 		}
 	}
 
@@ -50,17 +50,19 @@ class SearchInput extends Component {
 
 	render() {
 		console.log(this.props);
+		let randId = Math.random().toString(36).substr(2, 10);;
 		return (
-			<form onSubmit={this.onFormSubmit} className="input-group">
+			<form onSubmit={this.onFormSubmit} className="input-group" autocomplete="false">
 				<div className="form-group">
-	    			<label htmlFor="movie2">Movie</label>
+	    			<label htmlFor={randId}>Movie</label>
 			    	<input 
 			    		type="text" 
 			    		className="form-control" 
-			    		id="movie2" 
+			    		id={randId}
 			    		placeholder="Movie"
 			    		value={this.state.term}
-			    		onChange={this.onInputChange} />
+			    		onChange={this.onInputChange} 
+			    		autocomplete="false"/>
 			    		<ul>
 			    			{this.renderLiveSearch()}
 		    			</ul>
