@@ -14,3 +14,7 @@ li button{
 li button:hover{
 	text-decoration: underline;
 }
+
+form button {
+	margin-top: 10px;
+}

@@ -3,10 +3,10 @@ import axios from 'axios';
 const ROOT_URL = 'https://api.themoviedb.org/3';
 const API_KEY = '6f1f9a1abf347d1f0a727e5e486bba47';
 
-export const FETCH_FIRST_MOVIE = 'FETCH_FIRST_MOVIE';
-export const SELECT_FIRST_MOVIE = 'SELECT_FIRST_MOVIE';
+export const FETCH_LIVE_SEARCH = 'FETCH_LIVE_SEARCH';
+export const FETCH_ACTORS = 'FETCH_ACTORS';
 
-export function fetchFirstMovie(movie) {
+export function fetchLiveSearch(movie,id) {
 	console.log("movie: ", movie);
 	const url = `${ROOT_URL}/search/movie?api_key=${API_KEY}&query=${movie}`;
 
@@ -15,18 +15,19 @@ export function fetchFirstMovie(movie) {
 	console.log("Request: ", request);
 
 	return {
-		type: FETCH_FIRST_MOVIE,
+		type: FETCH_LIVE_SEARCH,
 		payload: request
 	}
 
 }
 
-export function selectFirstMovie(movie) {
-	console.log("selectedDaMovie: ", movie);
+export function fetchActors(movie1, movie2) {
+	console.log("selectedDaMovie: ", movie1);
+	console.log("selectedDa2Movie: ", movie2);
 
 	return {
-		type: SELECT_FIRST_MOVIE,
-		payload: movie
+		type: FETCH_ACTORS,
+		payload: movie1
 	}
 
 }
